@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaWhatsapp, FaShoppingCart } from "react-icons/fa";
 export default function Home() {
   const [cart, setCart] = useState<string[]>([]);
+const [quantities, setQuantities] = useState<{ [key: string]: string }>({});
 
 const addToCart = (produto: string) => {
   setCart([...cart, produto]);
@@ -298,15 +299,59 @@ Contato
         </div>
 
         <button
-  onClick={() => addToCart(`${nome} - ${preco}${unidade}`)}
+  onClick={() =>
+  addToCart(
+    `${nome} - ${quantities[nome] || "quantidade não informada"} - ${preco}${unidade}`
+  )
+}
   className="inline-block bg-green-500 hover:bg-green-400 text-black px-5 py-3 rounded-full font-bold transition-all duration-300"
 >
   Adicionar
+  <input
+  type="text"
+  placeholder={unidade === "/kg" ? "Ex: 300g ou 1kg" : "Ex: 1 un"}
+  value={quantities[nome] || ""}
+  onChange={(e) =>
+    setQuantities({ ...quantities, [nome]: e.target.value })
+  }
+  className="w-full mb-4 bg-black/40 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-green-500"
+/>
+
 </button>
       </div>
     ))}
   </div>
 </motion.section>
+{cart.length > 0 && (
+  <div className="fixed bottom-24 right-6 z-50 bg-zinc-900 border border-green-500/30 rounded-3xl p-5 w-80 shadow-[0_0_50px_rgba(34,197,94,0.25)]">
+    <div className="flex items-center gap-3 mb-4">
+      <FaShoppingCart className="text-green-400" />
+      <h3 className="font-bold text-xl">
+  Carrinho ({cart.length})
+</h3>
+    </div>
+
+    <div className="space-y-2 max-h-40 overflow-y-auto text-sm text-zinc-300">
+      {cart.map((item, index) => (
+        <p key={index}>{index + 1}. {item}</p>
+      ))}
+    </div>
+
+    <a
+      href={`https://wa.me/5511913689013?text=${cartMessage}`}
+      target="_blank"
+      className="block mt-5 text-center bg-green-500 hover:bg-green-400 text-black px-5 py-3 rounded-full font-bold transition-all duration-300"
+    >
+      Enviar no WhatsApp
+    </a>
+    <button
+  onClick={() => setCart([])}
+  className="w-full mt-3 border border-red-500 text-red-400 hover:bg-red-500 hover:text-white px-5 py-3 rounded-full font-bold transition-all duration-300"
+>
+  Limpar Carrinho
+</button>
+  </div>
+)}
 <footer className="border-t border-white/10 mt-32 py-10 text-center text-zinc-500">
 
   <h2 className="text-2xl tracking-[0.3em] text-white mb-4">
