@@ -36,7 +36,7 @@ Contato
 </div>
 
 <a
-  href="https://wa.me/55119913689013?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!"
+  href="https://wa.me/5511913689013?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!"
   target="_blank"
   className="md:hidden bg-green-500 text-black px-4 py-2 rounded-full text-sm font-bold"
 >
@@ -64,7 +64,7 @@ Contato
         </p>
 
    <a
-  href="https://wa.me/55119913689013?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!"
+  href="https://wa.me/5511913689013?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!"
   target="_blank"
   className="mt-10 px-10 py-5 bg-green-500 rounded-full text-black font-bold hover:scale-110 hover:bg-green-400 transition-all duration-500 shadow-[0_0_40px_rgba(34,197,94,0.5)]"
 >
@@ -122,7 +122,7 @@ Contato
 
       </motion.section>
       <a
-  href="https://wa.me/55119913689013?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!" 
+  href="https://wa.me/5511913689013?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!" 
   target="_blank"
   className="fixed bottom-6 right-6 z-50 bg-green-500 text-black px-6 py-4 rounded-full font-bold shadow-[0_0_30px_rgba(34,197,94,0.6)] hover:scale-110 hover:bg-green-400 transition-all duration-300"
 >
