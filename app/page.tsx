@@ -1,7 +1,20 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { FaWhatsapp, FaShoppingCart } from "react-icons/fa";
 export default function Home() {
+  const [cart, setCart] = useState<string[]>([]);
+
+const addToCart = (produto: string) => {
+  setCart([...cart, produto]);
+};
+
+const cartMessage = encodeURIComponent(
+  `Olá, gostaria de fazer esse pedido:\n\n${cart
+    .map((item, index) => `${index + 1}. ${item}`)
+    .join("\n")}`
+);
  return (
   <main className="bg-black text-white min-h-screen overflow-hidden">
       {/* NAVBAR */}
@@ -9,9 +22,19 @@ export default function Home() {
 
   <div className="flex items-center justify-between px-10 py-6">
 
+  
+
+  <div className="flex items-center gap-3">
+    <img
+      src="/images/logo.png"
+      alt="HORT Lourenço"
+      className="w-10 h-10 object-contain rounded-full"
+    />
+
     <h1 className="text-2xl tracking-[0.4em] font-bold">
       HORT
     </h1>
+  </div>
 
   <div className="hidden md:flex gap-8 text-sm text-zinc-300">
 <a
@@ -183,13 +206,113 @@ Contato
   target="_blank"
   className="fixed bottom-6 right-6 z-50 bg-green-500 text-black px-6 py-4 rounded-full font-bold shadow-[0_0_30px_rgba(34,197,94,0.6)] hover:scale-110 hover:bg-green-400 transition-all duration-300"
 >
+ <div className="flex items-center gap-2">
+  <FaWhatsapp size={22} />
   WhatsApp
+</div>
 </a>
+{/* SOBRE */}
+<motion.section
+  id="sobre"
+  initial={{ opacity: 0, y: 80 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="px-10 pb-32"
+>
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+    <div>
+      <p className="text-green-400 tracking-[0.3em] uppercase text-sm mb-4">
+        Sobre Nós
+      </p>
+
+      <h2 className="text-4xl md:text-6xl font-bold mb-8">
+        HORT<br />LOURENÇO
+      </h2>
+
+      <p className="text-zinc-400 text-lg leading-relaxed">
+        Trabalhamos diariamente com frutas, verduras e legumes frescos,
+        sempre buscando qualidade premium, atendimento rápido e produtos
+        selecionados especialmente para sua família.
+      </p>
+
+      <div className="flex gap-6 mt-10">
+        <div>
+          <h3 className="text-4xl font-bold text-green-400">+500</h3>
+          <p className="text-zinc-500">Clientes</p>
+        </div>
+
+        <div>
+          <h3 className="text-4xl font-bold text-green-400">100%</h3>
+          <p className="text-zinc-500">Qualidade</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="relative">
+      <img
+        src="/images/maca-fuji.png"
+        alt="HORT Lourenço"
+        className="rounded-[40px] shadow-[0_0_80px_rgba(34,197,94,0.25)]"
+      />
+    </div>
+
+  </div>
+</motion.section>
+{/* CATÁLOGO */}
+<motion.section
+  id="catalogo"
+  initial={{ opacity: 0, y: 80 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="px-10 pb-32"
+>
+  <p className="text-green-400 tracking-[0.3em] uppercase text-sm text-center mb-4">
+    Catálogo
+  </p>
+
+  <h2 className="text-4xl md:text-6xl font-bold text-center mb-16">
+    Produtos em destaque
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+    {[
+      ["🍎", "Maçã Fuji", "R$16,99", "/kg"],
+      ["🍌", "Banana Nanica", "R$8,99", "/kg"],
+      ["🥬", "Alface Americana", "R$4,99", "/un"],
+      ["🍅", "Tomate", "R$12,99", "/kg"],
+    ].map(([emoji, nome, preco, unidade]) => (
+      <div
+        key={nome}
+        className="bg-white/5 border border-white/10 rounded-3xl p-6 hover:-translate-y-3 hover:border-green-500 hover:shadow-[0_0_50px_rgba(34,197,94,0.25)] transition-all duration-500"
+      >
+        <div className="text-5xl mb-6">{emoji}</div>
+
+        <h3 className="text-2xl font-bold mb-3">{nome}</h3>
+
+        <div className="flex items-end gap-2 mb-6">
+          <span className="text-3xl font-bold text-green-400">{preco}</span>
+          <span className="text-zinc-500">{unidade}</span>
+        </div>
+
+        <button
+  onClick={() => addToCart(`${nome} - ${preco}${unidade}`)}
+  className="inline-block bg-green-500 hover:bg-green-400 text-black px-5 py-3 rounded-full font-bold transition-all duration-300"
+>
+  Adicionar
+</button>
+      </div>
+    ))}
+  </div>
+</motion.section>
 <footer className="border-t border-white/10 mt-32 py-10 text-center text-zinc-500">
 
   <h2 className="text-2xl tracking-[0.3em] text-white mb-4">
     HORT LOURENÇO
   </h2>
+       
 
   <p>
     Frutas frescas • verduras • delivery rápido
