@@ -118,9 +118,66 @@ Contato
 </button>
 </a>
           </div>
-        </div>
+                </div>
 
       </motion.section>
+
+{/* PROMOÇÕES */}
+<motion.section
+  id="promocoes"
+  initial={{ opacity: 0, y: 80 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="px-10 pb-32"
+>
+ <div className="relative overflow-hidden rounded-[40px] border border-green-500/20 bg-gradient-to-r from-green-500/10 to-black p-10 max-w-7xl mx-auto">
+
+    <div className="absolute inset-0 bg-green-500/5 blur-3xl"></div>
+
+    <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+
+      <div>
+        <p className="text-green-400 tracking-[0.3em] uppercase text-sm mb-4">
+          Promoção da Semana
+        </p>
+
+        <h2 className="text-5xl md:text-7xl font-bold mb-6">
+  Maçã Fuji
+</h2>
+
+        <p className="text-zinc-400 max-w-xl text-lg">
+          Maçã Fuji fresquinha, selecionada e em promoção especial no HORT Lourenço.
+        </p>
+
+        <div className="flex items-end gap-3 mt-8">
+  <span className="text-6xl font-bold text-green-400">
+    R$16,99
+  </span>
+
+  <span className="text-zinc-400 text-2xl mb-2">
+    /kg
+  </span>
+</div>
+
+        <a
+          href="https://wa.me/5511913689013"
+          target="_blank"
+          className="inline-block mt-8 bg-green-500 hover:bg-green-400 transition-all duration-300 hover:scale-105 text-black px-8 py-4 rounded-full font-bold"
+        >
+          Pedir Maçã Fuji
+        </a>
+      </div>
+
+      <img
+  src="/images/maca-fuji.png"
+  alt="Maçã Fuji"
+  className="w-full h-[320px] object-cover rounded-[30px] shadow-[0_0_60px_rgba(34,197,94,0.3)] hover:scale-105 transition-all duration-700"
+/>
+    </div>
+  </div>
+</motion.section>
+     
       <a
   href="https://wa.me/5511913689013?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!" 
   target="_blank"
